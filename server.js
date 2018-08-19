@@ -34,3 +34,13 @@ app.get('/shopping-list', (req, res) => {
 app.listen(process.env.PORT || 8080, () => {
   console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
 });
+
+const {Recipes} = require('./models');
+
+Recipes.create('sangria', ['red wine', 'oranges', 'strawberries']);
+Recipes.create('burrito', ['black beans', 'chicken', 'veggies', 'salsa']);
+Recipes.create('salad', ['greens', 'cucumbers', 'sliced almonds', 'sesame dressing']);
+
+app.get('/recipes', (req, res) => {
+  res.json(Recipes.get());
+});
